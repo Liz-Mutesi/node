@@ -4,10 +4,10 @@ const mongoose = require("mongoose")
 const workerRoutes = require("./routes/workerRoutes")
 const app = express()
 
+const workerModel = require("./models/workerModel")
 
 app.set("views", path.join(__dirname, "/views"))
-app.set("view engine", "html")
-
+app.set("view engine", "pug")
 
 app.use(express.urlencoded({ extended: true }));
 
@@ -23,13 +23,9 @@ mongoose.connect("mongodb://localhost:27017/farm",{
     
     })
 
+    // app.use("/", workerRoutes)
 
-
-
-    app.use("/", workerRoutes)
-
-
-
+    
 
 //create a schema
     // const workerSchema = new mongoose.Schema({
@@ -53,8 +49,13 @@ mongoose.connect("mongodb://localhost:27017/farm",{
 
     
 
-app.get("/", (req, res)=> {
-    res.sendFile(path.join(__dirname, "/index.html"))
+app.get("/", async(req, res)=> {
+    const workers = await workerModel.find({})
+    console.log(workers)
+    res.render("index", {
+        title: "Puppies",
+        data: workers
+    })
 })
 
 app.get("/file", (req, res)=> {

@@ -1,7 +1,7 @@
 
 const mongoose = require("mongoose")
 
-const workerSchema = new mongoose.Schema({
+const workerSchema = mongoose.Schema({
     name: String,
     field: String,
     age: Number,
@@ -9,3 +9,4 @@ const workerSchema = new mongoose.Schema({
 })
 
 module.exports = mongoose.model("Worker", workerSchema)
+
