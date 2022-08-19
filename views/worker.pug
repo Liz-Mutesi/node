@@ -7,6 +7,6 @@ html(lang="en")
         title= title
     body
         div 
-            a(href="/workers") Workers
-            a(href="/produce") Produce
-            a(href="/produce/new") Create
+            each worker in workers 
+                p= worker.name
+                p= worker.age

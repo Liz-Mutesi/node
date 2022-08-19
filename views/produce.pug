@@ -7,6 +7,10 @@ html(lang="en")
         title= title
     body
         div 
-            a(href="/workers") Workers
-            a(href="/produce") Produce
-            a(href="/produce/new") Create
+            each pdt in produce
+                p= pdt.name
+                p= pdt.description
+                p= pdt.quantity
+                p= pdt.price
+
+            a(href="/produce/new") Add another pdt
