@@ -4,6 +4,7 @@ const mongoose = require("mongoose")
 const workerRoutes = require("./routes/workerRoutes")
 const produceRoutes = require("./routes/produceRoutes")
 const homeRoutes = require("./routes/homeRoutes")
+// const testRoutes = require("./routes/testRoutes")
 const app = express()
 
 
@@ -27,6 +28,7 @@ mongoose.connect("mongodb://localhost:27017/farm",{
     app.use("/", homeRoutes)
     app.use("/workers", workerRoutes)
     app.use("/produce", produceRoutes)
+    app.use("/test", workerRoutes)
 
 //http://localhost:3000
 //http://localhost:3000/
@@ -41,3 +43,9 @@ mongoose.connect("mongodb://localhost:27017/farm",{
 // always the last line in the information
 app.listen(process.env.port || 3000)
 console.log("server running on port" + (process.env.port || 3000))
+
+
+
+
+
+
