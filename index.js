@@ -2,16 +2,17 @@ const express = require("express")
 const path = require("path")
 const mongoose = require("mongoose")
 const workerRoutes = require("./routes/workerRoutes")
-const produceRoutes = require("./routes/produceRoutes")
+// const produceRoutes = require("./routes/produceRoutes")
 const homeRoutes = require("./routes/homeRoutes")
 // const testRoutes = require("./routes/testRoutes")
 const app = express()
 
 
+app.use(express.urlencoded({ extended: true }));
+
 app.set("views", path.join(__dirname, "/views"))
 app.set("view engine", "pug")
 
-app.use(express.urlencoded({ extended: true }));
 
 
 //db connect
@@ -27,8 +28,8 @@ mongoose.connect("mongodb://localhost:27017/farm",{
 
     app.use("/", homeRoutes)
     app.use("/workers", workerRoutes)
-    app.use("/produce", produceRoutes)
-    app.use("/test", workerRoutes)
+    // app.use("/produce", produceRoutes)
+    // app.use("/test", workerRoutes)
 
 //http://localhost:3000
 //http://localhost:3000/

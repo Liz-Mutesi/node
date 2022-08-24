@@ -1,4 +1,4 @@
-
+//Describes the type and structure of data
 const mongoose = require("mongoose")
 
 const workerSchema = mongoose.Schema({
