@@ -3,6 +3,7 @@ const express = require("express")
 const workerModel = require("../models/workerModel")
 
 
+
 const router = express.Router()
 
 router.get("/", async (req, res) => {
@@ -12,8 +13,6 @@ router.get("/", async (req, res) => {
 
     })
 })
-
-
 router.get("/profile", (req, res)=> {
     res.render("test")
 })
@@ -34,6 +33,37 @@ router.post("/newWorker", async (req, res)=> {
         
     }
 })
+
+
+router.get("/worker-list", async (req, res)=> {
+    try{
+        let items = await workerModel.find()
+        res.render("workersList", {workers : items})
+
+    }
+    catch(err){
+        console.log(err)
+        res.send("Could not retrieve workers list")
+    }
+})
+//delete route
+router.post("/worker-list", async (req, res)=>{
+    try{
+        await workerModel.deleteOne({
+            _id: req.body._id 
+        })
+        res.redirect("/workers/worker-list")
+    }
+    catch(err){
+        res.status(400).send("Unable to delete item from the database")
+    }
+})
+
+
+
+
+
+
 //res.render(display) is used when pointing to a file
 //res.redirect is used to point to a path
 
