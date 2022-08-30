@@ -59,6 +59,24 @@ router.post("/worker-list", async (req, res)=>{
     }
 })
 
+router.get("/editWorker/:id", async (req, res)=>{
+    try {
+        const currentWorker = await workerModel.findById({_id:req.params.id})
+        res.render("editWorker", {worker:currentWorker})
+    }
+    catch {error}{
+        
+    }
+})
+router.post("/editWorker", async (req, res)=>{
+    try {
+        await workerModel.findByIdAndUpdate({_id:req.query.id}, req.body)
+       res.redirect("/workers/worker-list")
+    }
+    catch {error}{
+
+    }
+})
 
 
 
