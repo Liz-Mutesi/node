@@ -26,8 +26,22 @@ router.post('/login', (req, res, next) => {
         if (err) {
           return next(err);
         }
-  
-        return res.redirect('/users');
+      //   if (req.user.role === "manager"){
+      //   return res.redirect('/managerDash');
+      // }
+      //   if (req.user.role === "ceo"){
+      //   return res.redirect('/ceoDash');
+      // }
+      //   if (req.user.role === "dev"){
+      //   return res.redirect('/regularDash');
+      // }
+      if (req.user.role === "manager"){
+          return res.redirect('/managerDash');
+         } else if (req.user.role === "ceo"){
+          return res.redirect('/ceoDash')
+         } else {
+          return res.redirect('/regularDash')
+         }
       });
   
     })(req, res, next);

@@ -6,11 +6,11 @@ const passport = require("passport")
 
 
 const workerRoutes = require("./routes/workerRoutes")
-// const produceRoutes = require("./routes/produceRoutes")
 const homeRoutes = require("./routes/homeRoutes")
 const signUpRoutes = require("./routes/signUpRoutes")
 const loginRoutes = require("./routes/loginRoutes")
-// const testRoutes = require("./routes/testRoutes")
+const randomRoutes = require("./routes/randomRoutes")
+
 
 const SignupModel = require("./models/signUp")
 
@@ -49,15 +49,16 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 //-----------------------------------
-passport.use(Signup.createStrategy());
-passport.serializeUser(Signup.serializeUser());
-passport.deserializeUser(Signup.deserializeUser());
+passport.use(SignupModel.createStrategy());
+passport.serializeUser(SignupModel.serializeUser());
+passport.deserializeUser(SignupModel.deserializeUser());
 
 
 app.use("/", homeRoutes)
 app.use("/workers", workerRoutes)
 app.use("/", signUpRoutes)
 app.use("/", loginRoutes)
+app.use("/", randomRoutes)
 // app.use("/produce", produceRoutes)
 // app.use("/test", workerRoutes)
 
